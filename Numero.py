@@ -6,10 +6,12 @@ class JuegoAdivinarNumero:
         self.numero_maximo = numero_maximo
         self.numero_a_adivinar = random.randint(numero_minimo, numero_maximo)
         self.intentos_realizados = 0
+        self.Ganaste = False
 
     def mostrar_pista(self, intento):
         diferencia = abs(intento - self.numero_a_adivinar)
         if diferencia == 0:
+            self.Ganaste=True
             return "¡Correcto! Has adivinado el número."
         elif diferencia <= 5:
             return "Estás muy cerca."
@@ -23,7 +25,7 @@ class JuegoAdivinarNumero:
     def jugar(self):
         print(f"Bienvenido al juego de adivinar el número entre {self.numero_minimo} y {self.numero_maximo}.")
 
-        while True:
+        while not self.Ganaste: 
             intento = int(input("Ingresa tu número: "))
             self.intentos_realizados += 1
             print(self.mostrar_pista(intento))
