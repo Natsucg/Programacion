@@ -8,6 +8,14 @@ class JuegoAdivinarNumero:
         self.intentos_realizados = 0
         self.Ganaste = False
 
+    def establecer_rango(self):
+        try:
+            self.numero_minimo = int(input("Ingresa el nuevo número mínimo: "))
+            self.numero_maximo = int(input("Ingresa el nuevo número máximo: "))
+            self.intentos_maximos = int(input("Ingresa el número máximo de intentos: "))
+        except ValueError:
+            print("Error: Ingresa números válidos.")
+
     def mostrar_pista(self, intento):
         diferencia = abs(intento - self.numero_a_adivinar)
         if diferencia == 0:
@@ -23,12 +31,14 @@ class JuegoAdivinarNumero:
             return "Estás muy lejos."
         
     def jugar(self):
-        print(f"Bienvenido al juego de adivinar el número entre {self.numero_minimo} y {self.numero_maximo}.")
-
-        while not self.Ganaste: 
+        print(f"Bienvenido al juego de adivinar el número.")
+        self.establecer_rango()
+        while (not self.Ganaste)and(self.intentos_realizados<self.intentos_maximos): 
             intento = int(input("Ingresa tu número: "))
             self.intentos_realizados += 1
             print(self.mostrar_pista(intento))
+        if not self.Ganaste:
+            print("Chin, que menso jiji")
             
 
 # Uso del juego
