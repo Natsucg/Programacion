@@ -1,4 +1,5 @@
 import random
+import time
 
 class JuegoAdivinarNumero:
     def __init__(self, numero_minimo, numero_maximo):
@@ -7,6 +8,8 @@ class JuegoAdivinarNumero:
         self.numero_a_adivinar = random.randint(numero_minimo, numero_maximo)
         self.intentos_realizados = 0
         self.Ganaste = False
+        self.tiempo=0.0
+
 
     def establecer_rango(self):
         try:
@@ -33,12 +36,15 @@ class JuegoAdivinarNumero:
     def jugar(self):
         print(f"Bienvenido al juego de adivinar el número.")
         self.establecer_rango()
+        tiempo_inicio=time.time()
         while (not self.Ganaste)and(self.intentos_realizados<self.intentos_maximos): 
             intento = int(input("Ingresa tu número: "))
             self.intentos_realizados += 1
             print(self.mostrar_pista(intento))
+        self.tiempo=time.time()-tiempo_inicio
         if not self.Ganaste:
             print("Chin, que menso jiji")
+        print(f"el juego duro:{self.tiempo}")
             
 
 # Uso del juego
